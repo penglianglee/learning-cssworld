@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-1</title>
+  <style>
+    #div {
+      /* width: 50%; */
+      color: white;
+      /* Bergundy */
+      background-color: rgb(144, 0, 33) ;
+    }
+    .test{
+      /* display: flex; */
+      /* width: 50%; */
+      color: #ffffff;
+      /* Klein Blue */
+      background-color: rgb(0, 47, 167);
+    }
+
+    #talk1 {
+      position: absolute;
+      top:20%;
+      left: 10%;
+    }
+    #talk2 {
+      position: absolute;
+      top:40%;
+      right:10%;
+    }
+    #talk3 {
+      position: absolute;
+      top:60%;
+      left: 10%;
+    }
+
+    @keyframes talk1{
+      from { width: 100%;}
+      to { width: 50%;}
+    }
+
+    @keyframes talk3{
+      from {width: 28%;}
+      to { width:50%;}
+    }
+
+  </style>
+</head>
+<body>
+  <div id="div">div魔法石</div>
+  <span class="test">span魔法石 class="test"</span>
+  
+  <div id="talk1">
+    width:层叠天星，幻化有形，50%，变！
+  </div>
+  <div id="talk2">
+    width:类名之石， test为名，为我选择，出！层叠天星，幻化有形，50%，变！
+  </div>
+  <div id="talk3">
+    display:层叠天星，幻化有形，flex，变！
+  </div>
+  <script>
+    var talk1 = document.getElementById('talk1');
+    talk1.addEventListener("mouseover",function(){
+      document.getElementById('div').style="animation: talk1 0.5s linear 1 forwards";
+    });
+    
+    var talk3 = document.getElementById('talk3');
+    talk3.addEventListener("mouseover",function(){
+      document.getElementsByClassName('test')[0].style="display:flex;width:50%;animation: talk3 1s  linear 1 forwards";      
+    });
+  </script>
+</body>
+</html>
