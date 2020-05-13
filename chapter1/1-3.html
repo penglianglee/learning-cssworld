@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG vs CSS</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" width="204px" height="204px" >
+    <rect x="1" y="1" width="200" height="200" stroke="green" fill="none" stroke-width="2">
+      
+    </rect>
+    <text x="5" y="30">SVG Text Example,base on Coordinate System,not Document Flow</text>
+  </svg>
+  <div style="width:200px;height:200px;border:2px solid green">
+      CSS Text Example,base on Document Flow, not Coordinate System
+  </div>
+</body>
+</html>
