@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.1 块级元素</title>
+  <style>
+    div{
+      border: 3px solid rgb(144, 0, 33) ;
+      margin-bottom: 5px;
+    }
+    li {
+      margin:5px 0;
+      list-style-type: none;
+      border:3px solid rgb(0, 47, 167);
+    }
+    .myDiv img{
+      float: left;
+    }
+    .myDiv img{
+      float: left;
+    }
+    .myDiv2:after {
+      content:"";
+      display: block;
+      clear: both;
+    } */
+  </style>
+</head>
+<body>
+  <div>div块级元素独占一行</div>
+  <li>li块级元素独占一行.</li>
+  <div class="myDiv">
+    <img src="3-1.jpg" width="200px" height="200px">
+    <text>清除浮动：在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left或right）的元素，在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行的CSS处理，就叫CSS清除浮动。</text>
+    <button id="myBtn">点击清除浮动</button>
+  </div>
+  <script>
+    var myDiv = document.getElementsByClassName('myDiv')[0];
+    var myBtn = document.getElementById('myBtn');
+    myBtn.addEventListener("click",function(event){
+      myDiv.className="myDiv2";      
+    })
+  </script>
+</body>
+</html>
