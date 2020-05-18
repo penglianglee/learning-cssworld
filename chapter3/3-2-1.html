@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+  <title>3.2.1 width:auto</title>
+  <style>
+    .father {
+      width: 100px;
+      /* Klein Blue */
+      border:2px solid rgb(0, 47, 167);
+      white-space: nowrap;
+    }
+    .child {
+      display: inline-block;
+    }
+    .width {
+      width: 100%;
+    }
+
+
+    .constr {
+      width: 240px;
+      margin: 0 auto;
+      padding-bottom: 20px;
+      text-align: left;
+    }
+
+    .nav {
+      background-color: tan;
+    }
+    .nav-a {
+      display: block;
+      margin: 0 10px;
+      padding: 9px 10px;
+      border-bottom: 1px solid rgb(144, 0, 33);
+      border-top: 1px solid rgb(144, 0, 33);
+      color: #fff;
+    }
+    /* :first-child 选择器用于选取属于其父元素的首个子元素的指定选择器。 */
+    .nav-a:first-child { border-top: 0; }
+    /* +号用于选择后面紧邻的元素 */
+    .nav-a + .nav-a + .nav-a { border-bottom: 0;}
+
+    .box {
+      border: 2px solid rgb(0, 47, 167);
+      text-align: center;
+    }
+    .content {
+      display: inline-block;
+      text-align: left;
+    }
+
+    .wrap {
+      width: 200px; 
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .wrap > ul {
+      position: absolute;
+      white-space: nowrap;
+      padding-left: 0;
+    }
+    .wrap li {
+      display: inline-block;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h4>宽度表现：收缩到最小</h4>
+  <div style="position:relative;width:20px;">
+    <table style="table-layout: auto;border:2px solid rgb(144, 0, 33);">
+      <tr>
+        <td>就1列就1列就1列就1列</td>
+        <td>当父级relative，且宽度很小的时候，例如{position:relative;width:20px;absolute元素也会出现一柱擎天的情况；</td>
+        <td>当父级relative，且宽度很小的时候，例如{position:relative;width:20px;absolute元素也会出现一柱擎天的情况；</td>
+      </tr>
+    </table>
+  </div>
+  <div>上面的表格只有第一个td在div中，第二个第三个td元素都在div的margin中</div>
+  
+  <br>
+  <h4>宽度表现：超出容器限制</h4>
+  <div class="father">
+    <div class="child">恰如一江春水向东流，流到断崖也不回头</div>
+  </div>
+  <input id="changeWrap" type="button" value="点击取消white-space:nowrap">
+
+  <br>
+  <h4>外部尺寸与流体特性：正常流宽度</h4>
+  <div class="constr">
+    <h5>无宽度，借助流动性</h4>
+    <div class="nav">
+      <a href="javascript:;" class="nav-a">导航1</a>
+      <a href="javascript:;" class="nav-a">导航2</a>
+      <a href="javascript:;" class="nav-a">导航3</a>
+    </div>
+    <h5>width:100%</h4>
+    <div class="nav">
+      <a href="javascript:;" class="nav-a width">导航1</a>
+      <a href="javascript:;" class="nav-a width">导航2</a>
+      <a href="javascript:;" class="nav-a width">导航3</a>
+    </div>  
+  </div>
+  
+  <br>
+  <h4>内部尺寸与流体特性：包裹性</h4>
+  <div style="width: 240px;margin: 20px auto;">
+    <button>button标签的按钮会自动换行！但是input标签的按钮默认是不换行的哦</button>
+    <input type="button" value="button标签的按钮会自动换行！但是input标签的按钮默认是不换行的哦">
+  </div>
+  
+  <br>
+  <div class="box">
+    <div class="content">text-align 属性规定元素中的文本的水平对齐方式。</div>
+  </div>
+  <input id="addWords" type="button" value="点击添加文字">
+  <input id="changeWidth" type="button" value="点击将父元素width置0，首选最小宽度由英文字符单元'text-'决定">
+  
+  <br>
+  <h4>最大宽度情况的水平滚动</h4>
+  <div id="wrap" class="wrap">
+    <ul>
+      <li><img src="3-1.jpg"></li>
+      <li><img src="3-1.jpg"></li>
+      <li><img src="3-1.jpg"></li>
+      <li><img src="3-1.jpg"></li>
+      <li><img src="3-1.jpg"></li>
+    </ul>
+  </div>
+
+
+  <script>
+    var btn = document.getElementById('changeWrap');
+    btn.addEventListener("click",function(event){
+      document.getElementsByClassName('father')[0].style.whiteSpace="normal";
+    })
+    var btn2 = document.getElementById('addWords');
+    btn2.addEventListener("click",function(){
+      document.getElementsByClassName('content')[0].innerHTML+="父元素设置了text-align:center,子元素设置了text-align:left和display:inline-block，子元素不够宽时，在同一行依然表现为居中，足够宽时，表现出来的就是居左";
+    })
+    var btn3 = document.getElementById('changeWidth');
+    btn3.addEventListener("click",function(){
+      document.getElementsByClassName('box')[0].style.width=0;
+    });
+    new IScroll('#wrap', {
+      scrollbars: true,
+      scrollX: true,
+      scrollY: false
+    });
+  </script>
+</body>
+</html>
