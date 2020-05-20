@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>width值作用的细节</title>
+  <style>
+    #myDiv{
+      background-image:linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), 
+                        url(./3-1.jpg);
+      color: #fff;
+      padding: 16px;
+      border: 10px dashed #333;
+      font-size: 2em;
+      font-weight: 700;
+    }
+    .choice-list {
+      display: flex;
+      flex-direction: column;
+      height: 200px;
+      border: 2px solid #d6dee0;
+      padding: .8em;
+    }
+    .choice {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      border: 2px solid #d6dee0;
+      margin: .2em 0;
+      padding: .2em;
+    }
+    .choice:hover{
+      cursor: pointer;
+      border: 2px solid #1b76c4;
+    }
+  </style>
+</head>
+<body>
+  <div id="myDiv">
+    
+      width设置的值默认是content的宽度，不包括padding border margin
+      背景默认覆盖了border-box，即包括了border、padding和content
+  </div>
+  <div class="choice-list">
+    选择background-clip属性改变背景覆盖范围：
+    <div class="choice">
+      <span>background-clip: border-box;</span>
+    </div>
+    <div class="choice">
+      <span>background-clip: padding-box;</span>
+    </div>
+    <div class="choice">
+      <span>background-clip: content-box;</span>
+    </div>
+    <div class="choice">
+      <span>background-clip: text;-webkit-background-clip: text;color: transparent;</span>
+    </div>
+  </div>
+  <script>
+    var divs = document.getElementsByClassName('choice');
+    var myDiv = document.getElementById('myDiv');
+    for(var i = 0; i < divs.length; i++){
+      divs[i].addEventListener("click",change(i),false);
+    }
+    function change(i){
+      return function(){
+        console.log("this.value is "+divs[i].firstElementChild.innerText);
+        myDiv.removeAttribute("style");
+        myDiv.style = divs[i].firstElementChild.innerText;
+     }
+    }
+  </script>
+</body>
+</html>
